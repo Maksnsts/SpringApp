@@ -26,7 +26,7 @@ public class  MainController {
     @Value("${upload.path}")
     private String uploadPath;
 
-    @GetMapping("/")
+    @GetMapping
     public String greeting(Map<String, Object> model) {
         return "greeting";
     }
@@ -35,11 +35,11 @@ public class  MainController {
     public String main(@RequestParam(required = false, defaultValue = "") String filter, Model model){
         Iterable<Message> messageRepositoryAll = messageRepository.findAll();
 
-        if(filter != null && !filter.isEmpty()) {
+        if(filter != null && !filter.isEmpty())
             messageRepositoryAll = messageRepository.findByTag(filter);
-        }else {
+        else
             messageRepositoryAll = messageRepository.findAll();
-        }
+
 
         model.addAttribute("messages", messageRepositoryAll);
         model.addAttribute("filter", filter);
@@ -57,9 +57,9 @@ public class  MainController {
         if(file != null && !file.getOriginalFilename().isEmpty()){
             File uploadDir = new File(uploadPath);
 
-            if(!uploadDir.exists()){
+            if(!uploadDir.exists())
                 uploadDir.mkdir();
-            }
+
 
             String uuidFile = UUID.randomUUID().toString();
             String resultFilename = uuidFile + "." + file.getOriginalFilename();
