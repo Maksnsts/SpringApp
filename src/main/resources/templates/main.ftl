@@ -23,8 +23,8 @@
                 <input type="text" name="tag" class="form-control" placeholder="ТЕГ" />
             </div>
                 <div class="custom-file">
-                    <input type="file" name="file" id="customFile">
                     <label class="custom-file-label" for="customFile">Choose file</label>
+                    <input type="file" name="file" id="customFile">
                 </div>
             <input type="hidden" name="_csrf" class="form-control" value="${_csrf.token}" >
             <div class="form-group mt-3">
