@@ -1,6 +1,10 @@
 package com.example.sweater.domain;
 
+//import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+//import javax.validation.constraints.NotBlank;
 import java.util.stream.Stream;
 
 @Entity
@@ -9,6 +13,9 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
+    //@Length(max = 2048, message = "Message too long (more than 2kB)")
+    @NotBlank(message = "Please fill the message")
     private String text;
     private String tag;
 
