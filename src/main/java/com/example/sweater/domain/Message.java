@@ -1,25 +1,22 @@
 package com.example.sweater.domain;
 
-//import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-//import javax.validation.constraints.NotBlank;
-import java.util.stream.Stream;
 
 @Entity
 public class Message {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-
-    //@Length(max = 2048, message = "Message too long (more than 2kB)")
     @NotBlank(message = "Please fill the message")
+    @Length(max = 2048, message = "Message too long (more than 2kB)")
     private String text;
+    @Length(max = 255, message = "Message too long (more than 255)")
     private String tag;
 
-    //ManyToOne
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User author;
@@ -34,7 +31,8 @@ public class Message {
         this.text = text;
         this.tag = tag;
     }
-    public String getAuthorName(){
+
+    public String getAuthorName() {
         return author != null ? author.getUsername() : "<none>";
     }
 
@@ -46,20 +44,20 @@ public class Message {
         this.author = author;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTag() {
